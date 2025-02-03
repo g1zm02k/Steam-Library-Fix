@@ -87,10 +87,7 @@ DT(CT,*){
     Loop 2
       If CB%A_Index%.Value
         CNT++
-    If !CNT
-      GOO["BtnMain"].Text:="Fix nothing; exit?"
-    Else
-      GOO["BtnMain"].Text:="Fix selected?"
+    GOO["BtnMain"].Text:=(!CNT?"Fix nothing; exit?":"Fix selected?")
   }
 }
 
