@@ -76,7 +76,8 @@ DT(CT,*){
     Switch{
       Case CT.Text="X":ExitApp()
       Case InStr(CT.Text,"exit"):ExitApp()
-      Case InStr(CT.Text,"W.A."):Run("https://github.com/g1zm02k")
+      Case InStr(CT.Text,"W.A."):
+        Run("https://github.com/g1zm02k/Steam-Library-Fix")
       Case CT.Text="Fix selected?":FX(CT)
       Default:
         While GetKeyState("LButton","P")
