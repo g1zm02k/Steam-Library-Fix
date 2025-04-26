@@ -1,5 +1,6 @@
-﻿#Requires AutoHotkey 2.0+
+#Requires AutoHotkey 2.0+
 #SingleInstance Force
+SetRegView(32)
 
 X:=6,Y:=25,W:=400,H:=130
 GOO:=Gui("+AlwaysOnTop +Owner +ToolWindow -Caption","Steam Library Fix")
@@ -17,7 +18,7 @@ GOO.AddText(CP(W-24,2,22,22,"FF0000","171D25",2),"X")
 ;Bot Section 15px
 GOO.SetFont("s08")
 GOO.AddProgress(CP(1,H-15,W-2,14,"313842",1,1))
-GOO.AddText(CP(2,H-14,W-4,12,"1A9FFF","171D25",2),"W.A.Robinson|G1ZM02K")
+GOO.AddText(CP(2,H-14,W-4,12,"1A9FFF","171D25",2),"GitHub")
 .OnEvent("Click",DT)
 ;Sub Section H-40px
 GOO.SetFont("s12")
@@ -93,7 +94,16 @@ DT(CT,*){
 }
 
 FX(CT){
-  Global CSS
+  Global CSS,DIR
+  EXE:=""
+  If WinExist("Steam ahk_exe steamwebhelper.exe"){
+    RES:=MsgBox("Steam will be closed; okay to continue?","Warning!",0x1021)
+    If (RES="Cancel")
+      Return
+    EXE:=RegExReplace(WinGetProcessPath("Steam ahk_exe steamwebhelper.exe")
+      ,"(.*)bin.*","$1steam.exe")
+    ProcessClose("steamwebhelper.exe")
+  }
   CNT:=0,SIZ:=StrLen(CSS)
   Loop 2{
     I:=A_Index
@@ -109,6 +119,9 @@ FX(CT){
     FileMove(FIL,SubStr(FIL,1,-3) "bup",1)
     FileAppend(CSS Format("{: " SIZ-StrLen(CSS) "}"," "),FIL)
   }
+  RunWait(RegExReplace(DIR,"steamui\\css\\","steam.exe"))
+  If EXE
+    Run(EXE)
   CT.Text:="Fixed and saved! Exit?"
 }
 
@@ -118,29 +131,26 @@ CP(X,Y,W:=0,H:=0,F:=0,B:=0,O:=0)=>"x" X " y" Y (W?" w" W:"") (H?" h" H:"")
 
 SteamDir(){  ;Locate Steam's install folder...
   DIR:=""
-  If !DIR{  ;Try default install location
-    SetWorkingDir("C:\Program Files (x86)\Steam\")
-    If FileExist("steam.exe")
+  If !DIR  ;Check if running
+    Try DIR:=RegExReplace(WinGetProcessPath("Steam ahk_exe steamwebhelper.exe")
+      ,"(.*)bin.*","$1steamui\css\")
+  If !DIR  ;Try default install location
+    If FileExist("C:\Program Files (x86)\Steam\steam.exe")
       DIR:="C:\Program Files (x86)\Steam\steamui\css\"
-  }
-  If !DIR{  ;Try registry uninstall path
-    SetRegView(32)
-    Try DIR:=RegRead("HKLM\SOFTWARE\Microsoft\Windows\"
-      . "CurrentVersion\Uninstall\Steam","UninstallString")
-    DIR:=RegExReplace(DIR,'(.*)\\.*',"$1\steamui\css\")
-  }
-  If !DIR{  ;Try registy use exe path
-    Try DIR:=RegRead("HKCR\steam\Shell\Open\Command")
-    DIR:=RegExReplace(DIR,'^"(.*)\\.*',"$1\steamui\css\")
-  }
-  If !DIR{  ;If still not found, ask
+  If !DIR  ;Try registry uninstall path
+    Try DIR:=RegExReplace(RegRead("HKLM\SOFTWARE\Microsoft\Windows\Current"
+      . "Version\Uninstall\Steam","UninstallString"),"(.*)\\.*"
+      ,"$1\steamui\css\")
+  If !DIR  ;Try registy use exe path
+    Try DIR:=RegExReplace(RegRead("HKCR\steam\Shell\Open\Command")
+      ,'^"(.*)\\.*',"$1\steamui\css\")
+  If !DIR  ;If still not found, ask
     Loop{
-      DIR:=FileSelect("1","C:\Program Files (x86)\Steam"
-        ,"Select your 'steam.exe'...","Steam (steam.exe)")
-      DIR:=RegExReplace(DIR,'(.*)\\.*',"$1\steamui\css\")
+      DIR:=RegExReplace(FileSelect("1","C:\Program Files (x86)\Steam"
+        ,"Select your 'steam.exe'...","Steam (steam.exe)"),"(.*)\\.*"
+        ,"$1\steamui\css\")
     }Until !DIR || (DIR~="steamui")
-    If !DIR
-      MsgBox("Steam not found, quitting...","Aborted"),ExitApp()
-  }
+  If !DIR  ;Quit if not found
+    MsgBox("Steam not found, quitting...","Aborted",0x1030),ExitApp()
   Return DIR
 }
