@@ -77,7 +77,7 @@ DT(CT,*){
     Switch{
       Case CT.Text="X":ExitApp()
       Case InStr(CT.Text,"exit"):ExitApp()
-      Case InStr(CT.Text,"W.A."):
+      Case InStr(CT.Text,"GitHub"):
         Run("https://github.com/g1zm02k/Steam-Library-Fix")
       Case CT.Text="Fix selected?":FX(CT)
       Default:
@@ -154,3 +154,4 @@ SteamDir(){  ;Locate Steam's install folder...
     MsgBox("Steam not found, quitting...","Aborted",0x1030),ExitApp()
   Return DIR
 }
+
