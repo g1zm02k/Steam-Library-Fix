@@ -1,10 +1,10 @@
-﻿#Requires AutoHotkey 2.0+
+#Requires AutoHotkey 2.0+
 #SingleInstance Force
- 
+
 ;Change the following line to your Steam CSS directory...
 SetWorkingDir("C:\Program Files (x86)\Steam\steamui\css\")
  
-Loop Files "Chunk*.css","F"
+Loop Files "chunk~2dcc5aaf7.css","F"
   F:=A_LoopFileName
 If !F
   MsgBox("Matching CSS file not found!`n`nQuitting...","CSS File Error",0x30),ExitApp()
