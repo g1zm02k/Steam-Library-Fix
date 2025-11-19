@@ -47,7 +47,7 @@ SetWorkingDir(!DIR?SteamDir():DIR)
 If DIR
   SS0.Text:=SubStr(DIR,1,InStr(DIR,"Steam")+5),SS0.SetFont("cGreen")
 ;Get Last 'chunk*.css' Filename
-Loop Files "chunk*.css","F"
+Loop Files "chunk~2dcc5aaf7.css","F"  ;Updated 19 Nov '25
   CSS:=FileRead(FIL:=A_LoopFileName)
 If !IsSet(CSS)
   MsgBox("No matching file(s) found!`n`nQuitting...","STEAM CSS Error",0x1010)
@@ -154,4 +154,5 @@ SteamDir(){  ;Locate Steam's install folder...
     MsgBox("Steam not found, quitting...","Aborted",0x1030),ExitApp()
   Return DIR
 }
+
 
