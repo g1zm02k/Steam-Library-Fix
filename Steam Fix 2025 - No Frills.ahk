@@ -11,13 +11,14 @@ If !F
 S:=StrLen(H:=FileRead(F)),D:=0
  
 ; #####  "What's New" section  #####
-If RegExMatch(H,".*?17uEB[^\{]*\{bo.*?\}\.Lib.*")
-  H:=RegExReplace(H,"`aim)(.*?17uEB[^\{]*\{)bo.*?(\}\.Lib.*)","$1display:none !important;$2"),D:=1
+If RegExMatch(H,"17uEB[^\{]*\{bo.*?\}")
+  H:=RegExReplace(H,"(17uEB[^\{]*\{)bo.*?(\})","$1display:none !important;$2"),D:=1
  
 ; #####  "Add Shelf" section  #####
-If RegExMatch(H,".*?3SkuN[^\{]*\{bo.*?\}.*")
-  H:=RegExReplace(H,"`aim)(.*?3SkuN[^\{]*\{)bo.*?(\}.*)","$1display:none !important;$2"),D:=1
+If RegExMatch(H,"3SkuN[^\{]*\{bo.*?\}")
+  H:=RegExReplace(H,"(3SkuN[^\{]*\{)bo.*?(\})","$1display:none !important;$2"),D:=1
  
 If D
   FileMove(F,SubStr(F,1,-3) "bup",1),FileAppend(H Format("{: " S-StrLen(H) "}"," "),F)
 MsgBox("All replacements have" (D?"":" already") " been made.","All done...")
+
