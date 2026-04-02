@@ -1,8 +1,8 @@
-﻿#Requires AutoHotkey 2.0+
+#Requires AutoHotkey 2.0+
 #SingleInstance Force
 SetRegView(32)
 
-X:=6,Y:=25,W:=400,H:=150
+X:=6,Y:=25,W:=400,H:=170
 GOO:=Gui("+AlwaysOnTop +Owner +ToolWindow -Caption","Steam Library Fix")
 GOO.BackColor:="000000"
 GOO.AddProgress(CP(1,1,W-2,H-2,"192B3E",1,1))
@@ -23,12 +23,13 @@ GOO.AddText(CP(2,H-14,W-4,12,"1A9FFF","171D25",2),"GitHub")
 ;Sub Section H-40px
 GOO.SetFont("s12")
 ;Assign 'Found' Sections
-ARR:=[{T:"Steam Dir :",I:1,C:0},{T:"CSS File  :",I:2,C:0}
-     ,{T:"What's New:",I:3,C:1},{T:"Add Shelf :",I:4,C:1}]
+ARR:=[{T:"Steam Dir  :",I:1,C:0},{T:"CSS File   :",I:2,C:0}
+     ,{T:"What's New :",I:3,C:1},{T:"Add Shelf  :",I:4,C:1}
+     ,{T:"Big Picture:",I:5,C:1}]
 Loop ARR.Length{
   I:=A_Index,P:=I-1
   GOO.AddText(CP(6,Y+P*20,,,"CDCDEDF","192B3E"),ARR[I].T)
-  ARR[I].I:=GOO.AddText(CP(112,Y+P*20,W-120,,"506A82","192B3E"),"Searching...")
+  ARR[I].I:=GOO.AddText(CP(120,Y+P*20,W-120,,"506A82","192B3E"),"Searching...")
   If ARR[I].C{
     ARR[I].C:=GOO.AddCheckBox(CP(W-17,Y+P*20+1,14,18,1,"192B3E",3))
     ARR[I].C.Visible:=0
@@ -36,8 +37,8 @@ Loop ARR.Length{
   }
 }
 ;Main Button
-GOO.AddProgress(CP(60,Y+84,W-120,22,"1A9FFF",1,1))
-GOO.AddText(CP(61,Y+85,W-122,20,"1A9FFF","171D25",2) " vBtnMain","...")
+GOO.AddProgress(CP(60,H-41,W-120,22,"1A9FFF",1,1))
+GOO.AddText(CP(61,H-40,W-122,20,"1A9FFF","171D25",2) " vBtnMain","...")
 .OnEvent("Click",DT)
 ;Show GUI
 GOO.Show("w" W " h" H)
@@ -49,6 +50,9 @@ RT1:=".*?17uEB[^\{]*\{di.*?\}\.Lib.*"
 RM2:=".*?3SkuN[^\{]*\{bo.*?\}.*"
 RR2:="`aim)(.*?3SkuN[^\{]*\{)bo.*?(\}.*)"
 RT2:=".*?3SkuN[^\{]*\{di.*?;\}.*"
+RM3:=".*?_3LKQ[^\{]*\{co.*?\}.*"
+RR3:="`aim)(.*?_3LKQ[^\{]*\{)co.*?(\}.*)"
+RT3:=".*?_3LKQ[^\{]*\{di.*?;\}.*"
 REP:="$1display:none !important;$2"
 
 ;Set Steam's CSS Directory
@@ -76,7 +80,7 @@ Else
 
 ;Find Matching CSS Code
 CNT:=0
-Loop 2{
+Loop 3{
   I:=A_Index
   If POS:=RegExMatch(CSS,RM%I%)
     ARR[I+2].I.Text:="Match at " POS " bytes; fix?",ARR[I+2].C.Visible:=1,CNT++
@@ -102,7 +106,7 @@ DT(CT,*){
     }
   }Else{
     CNT:=0
-    Loop 2
+    Loop 3
       If ARR[A_Index+2].C.Value
         CNT++
     GOO["BtnMain"].Text:=(!CNT?"Exit without fixing":"Fix selected")
@@ -125,7 +129,7 @@ FX(CT){
     ProcessClose("steamwebhelper.exe")
   }
   CNT:=0,SIZ:=StrLen(CSS)
-  Loop 2{
+  Loop 3{
     I:=A_Index
     If ARR[I+2].C.Visible && ARR[I+2].C.Value{
       CSS:=RegExReplace(CSS,RR%I%,REP)
