@@ -5,7 +5,7 @@
 SetWorkingDir("C:\Program Files (x86)\Steam\steamui\css\")
 
 ; Try to load the main UI CSS file
-If !(F:="chunk~2dcc5aaf7.css")
+If !(F:="sp.css")
   MsgBox("Matching CSS file not found!`n`nQuitting...","Error",0x30),ExitApp()
 S:=StrLen(H:=FileRead(F)),R:="$1display:none !important;$2"
 
