@@ -60,23 +60,10 @@ SetWorkingDir(DIR:=SteamDir())
 If DIR
   ARR[1].I.Text:=SubStr(DIR,1,InStr(DIR,"Steam")+5),ARR[1].I.SetFont("c00FF00")
 
-;Get Matching 'chunk*.css' Filename
-Loop Files "chunk*.css","F"{
-  CSS:=FileRead(FIL:=A_LoopFileName)
-  If !IsSet(CSS)
-    MsgBox("No matching file(s) found!`n`nQuitting...","STEAM CSS Error",0x1010)
-     ,ExitApp()
-  If RegExMatch(CSS,RM1) || RegExMatch(CSS,RM2)
-   || RegExMatch(CSS,RT1) || RegExMatch(CSS,RT2){
-    CNT:=1
-    Break
-  }
-}
-If !CNT
-  MsgBox("No matching code(s) found!`n`nQuitting...","STEAM CSS Error",0x1010)
-   ,ExitApp()
-Else
-  ARR[2].I.Text:=FIL,ARR[2].I.SetFont("c00FF00")
+;Read 'sp.css' File into Memory
+CSS:=FileRead(FIL:="sp.css")
+
+ARR[2].I.Text:=FIL,ARR[2].I.SetFont("c00FF00")
 
 ;Find Matching CSS Code
 CNT:=0
