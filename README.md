@@ -7,6 +7,8 @@ Since I went that far, I decided to add auto-detection of the Steam directory, a
 
 I've added the original script purely for posterity reasons and for those with a 'No Frills' attitude and just want to get the job done.
 
+Recent additions: Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
+
 Stuff to add when I have time:
 * Back up individual modified sections to restore if required; tiny text block vs. a 4MB complete backup makes far more sense (it's already tested and working, just needs implemented into the script).
 * Other...
