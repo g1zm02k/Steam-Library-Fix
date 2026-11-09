@@ -15,9 +15,9 @@ Since I went that far, I decided to add auto-detection of the Steam directory, a
 
 I've added the original script purely for posterity reasons and for those with a 'No Frills' attitude and just want to get the job done (with the suffix "-basic".
 
-### Recent additions (26/11/09): Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
+**Recent additions (26/11/09):** Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
 
-## Main Update: 26/11/09
+### Main Update: 26/11/09
 
 I quit drinking for a month and realised that it's a death knell due to ADHD as I just can't focus enough to get anything done; a bottle of whiskey later and I rewrote a vast majority of the code... 
 
