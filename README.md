@@ -28,7 +28,9 @@ I quit drinking for a month and realised that it's a death knell due to ADHD as 
 
 ### Notes:
 I've uploaded the script (why not)...
+
 The CSS check is set up to default to the current naming of "sp.css" if it _fails_ to find a match in other "css" files. That way it won't fail outright if all changes were made (there won't be a match to find otherwise and it'll have a hissy-fit otherwise).
+
 As "sp.css" is the current name set by Valve it should be safe to reference for the time being (until I add in the "ini" change at least - see below).
 
 ### Stuff to add/fix:
