@@ -2,7 +2,8 @@
 
 Pre-Note: I find that running Steam™ under DevMode is more convenient for me so these changes are done immediately without restarting...
   If you wish to follow along, just create a shortcut and append `-dev` so it looks like `"C:\Program Files (x86)\Steam\Steam.exe" -dev`
-  The main script gives the option to restart Steam™ regardless so this _isn't_ a requirement.
+
+The main script gives the option to restart Steam™ regardless so this _isn't_ a requirement.
 
 ## Anyway...
 
