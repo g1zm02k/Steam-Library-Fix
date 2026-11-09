@@ -15,21 +15,23 @@ Since I went that far, I decided to add auto-detection of the Steam directory, a
 
 I've added the original script purely for posterity reasons and for those with a 'No Frills' attitude and just want to get the job done (with the suffix "-basic".
 
-Recent additions (26/11/09): Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
+### Recent additions (26/11/09): Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
 
-Main Update: 26/11/09 - I quit drinking for a month and realised that it's a death knell due to ADHD as I just can't focus enough to get anything done; a bottle of whiskey later and I rewrote a vast majority of the code... 
+## Main Update: 26/11/09
 
-Upcoming (done, but still bug-fixing):
+I quit drinking for a month and realised that it's a death knell due to ADHD as I just can't focus enough to get anything done; a bottle of whiskey later and I rewrote a vast majority of the code... 
+
+### Upcoming (done, but still bug-fixing):
 * Checking all CSS files for matches in case Valve™ decides to change the filename again; trying to keep ahead for less updates in the future!
 * Rewrote the install directory check to stop searching when it finds a match rather than processing all tests regardless.
 * Check for github updates and alert the user (casually) that there's an update available.
 
-Notes:
+### Notes:
 I've uploaded the script (why not)...
 The CSS check is set up to default to the current naming of "sp.css" if it _fails_ to find a match in other "css" files. That way it won't fail outright if all changes were made (there won't be a match to find otherwise and it'll have a hissy-fit otherwise).
 As "sp.css" is the current name set by Valve it should be safe to reference for the time being (until I add in the "ini" change at least - see below).
 
-Stuff to add/fix:
+### Stuff to add/fix:
 * Back up any changes to an "ini" to restore if required; tiny text block holding only the changes made vs. a 4MB complete backup makes far more sense (the fix is working on a test script, restoring them is more of an issue although I have an idea or two).
 * Still debating whether it's _worth_ putting in a restore option since you can just rename the backup and run the script again; with the console running it's done almost instantaneously anyway...
 * Other...
