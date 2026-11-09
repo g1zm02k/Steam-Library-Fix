@@ -17,10 +17,6 @@ I've added the original script purely for posterity reasons and for those with a
 
 **Recent additions (26/11/09):** Added a 'History' directory to show my working over time for those curious sorts; no-one's perfect, and here's proof!
 
-### Main Update: 26/11/09
-
-I quit drinking for a month and realised that it's a death knell due to ADHD as I just can't focus enough to get anything done; a bottle of whiskey later and I rewrote a vast majority of the code... 
-
 ### Upcoming (done, but still bug-fixing):
 * Checking all CSS files for matches in case Valve™ decides to change the filename again; trying to keep ahead for less updates in the future!
 * Rewrote the install directory check to stop searching when it finds a match rather than processing all tests regardless.
